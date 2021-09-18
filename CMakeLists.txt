@@ -12,10 +12,10 @@ set(CMAKE_CXX_STANDARD 17)
 # Initialize the SDK
 pico_sdk_init()
 
+file(GLOB SOURCES src/*.c)
+
 # Tell CMake where to find the executable source file:
-add_executable(${PROJECT_NAME}
-        main.c
-)
+add_executable(${PROJECT_NAME} ${SOURCES})
 
 add_compile_options(-Wall
         -Wno-format          # int != int32_t as far as the compiler is concerned because gcc has int32_t as long int
