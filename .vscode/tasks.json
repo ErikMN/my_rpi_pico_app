@@ -1,0 +1,98 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "BUILD",
+      "detail": "Build the app",
+      "type": "shell",
+      "command": [
+        "cd build && make"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": [
+        {
+          "base": "$gcc",
+          "fileLocation": [
+            "relative",
+            "${workspaceFolder}"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "INIT CMAKE",
+      "detail": "Re-init CMake",
+      "type": "shell",
+      "command": [
+        "mkdir -p build && cd build && cmake .."
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": [
+        {
+          "base": "$gcc",
+          "fileLocation": [
+            "relative",
+            "${workspaceFolder}"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "UPLOAD U2F",
+      "detail": "Upload .u2f file",
+      "type": "shell",
+      "command": [
+        "cp build/*.uf2 /media/$USER/RPI-RP2"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": [
+        {
+          "base": "$gcc",
+          "fileLocation": [
+            "relative",
+            "${workspaceFolder}"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "BUILD+UPLOAD",
+      "detail": "Build and upload",
+      "type": "shell",
+      "command": [
+        "cp build/*.uf2 /media/$USER/RPI-RP2"
+      ],
+      "dependsOn": [
+        "BUILD"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}
